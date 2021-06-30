@@ -1,8 +1,11 @@
 import React from "react";
+import Button from "../components/common/Button";
 
 const PostListPage = () => {
     return (
-        <div>post list</div>
+        <div>
+            <Button>Button</Button>
+        </div>
     );
 }
 
