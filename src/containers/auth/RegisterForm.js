@@ -61,7 +61,7 @@ const RegisterForm = ({history}) => {
         if(user) {
             history.push('/');
         }
-    }, [user])
+    }, [history, user])
 
     return (
         <AuthForm type="register" form={form} onChange={onChange} onSubmit={onSubmit} />
