@@ -75,6 +75,11 @@ const RegisterForm = ({history}) => {
     useEffect(() => {
         if(user) {
             history.push('/');
+            try {
+                localStorage.setItem('user', user);
+            } catch(e) {
+                console.log('error occured in localStorage')
+            }
         }
     }, [history, user])
 
