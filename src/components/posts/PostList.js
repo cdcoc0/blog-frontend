@@ -73,7 +73,7 @@ const PostItem = ({post}) => {
     return (
         <PostItemBlock>
             <h2>
-                <Link to={`/${user.username}/${_id}`}>
+                <Link to={`/@${user.username}/${_id}`}>
                     {title}
                 </Link>
             </h2>
