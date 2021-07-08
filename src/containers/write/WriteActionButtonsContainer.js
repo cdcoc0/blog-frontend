@@ -2,20 +2,26 @@ import React, {useEffect} from "react";
 import WriteActionButtons from "../../components/write/WriteActionButtons";
 import { useSelector, useDispatch } from "react-redux";
 import {withRouter} from 'react-router-dom';
-import { writePost } from "../../modules/write";
+import { writePost, updatePost } from "../../modules/write";
 
 const WriteActionButtonsContainer = ({history}) => {
     const dispatch = useDispatch();
-    const {title, body, tags, post, postError} = useSelector(({write}) => ({
+    const {title, body, tags, post, postError, originalPostId} = useSelector(({write}) => ({
         title: write.title,
         body: write.body,
         tags: write.tags,
         post: write.post,
         postError: write.postError,
+        originalPostId: write.originalPostId,
     }));
 
     //포스트 등록
     const onPublish = () => {
+        if(originalPostId) {
+            dispatch(updatePost({
+                title, body, tags, id: originalPostId
+            }));
+        }
         dispatch(writePost({
             title,
             body,
@@ -40,7 +46,8 @@ const WriteActionButtonsContainer = ({history}) => {
     }, [history, post, postError]);
 
     return (
-        <WriteActionButtons onPublish={onPublish} onCancel={onCancel} />
+        <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={!!originalPostId} /> //originalPostId 초깃값이 null이니까
+                                                                                                    //false가 되려면 느낌표 두 개...
     );
 }
 
