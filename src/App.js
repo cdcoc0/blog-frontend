@@ -1,12 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import {Route} from 'react-router-dom';
-import LoginPage from "./pages/LoginPage";
-import PostListPage from "./pages/PostListPage";
-import PostPage from "./pages/PostPage";
-import RegisterPage from "./pages/RegisterPage";
-import WritePage from "./pages/WritePage";
+// import LoginPage from "./pages/LoginPage";
+// import RegisterPage from "./pages/RegisterPage";
+import loadable from '@loadable/component';
 
+const PostListPage = loadable(() => import('./pages/PostListPage'));
+const WritePage = loadable(() => import('./pages/WritePage'));
+const PostPage = loadable(() => import('./pages/PostPage'));
+const LoginPage = loadable(() => import('./pages/LoginPage'));
+const RegisterPage = loadable(() => import('./pages/RegisterPage'));
 
 function App() {
   return (
